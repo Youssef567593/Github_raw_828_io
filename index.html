@@ -26,7 +26,7 @@
       const data = await response.json();
       if(data.link){
         document.getElementById('result').innerHTML = 
-          `رابط النص: <a href="\${data.link}" target="_blank">\${data.link}</a>`;
+          `رابط النص: <a href="${data.link}" target="_blank">${data.link}</a>`;
       } else {
         document.getElementById('result').textContent = 'حدث خطأ';
       }

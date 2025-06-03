@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create RAW Page</title>
+</head>
+<body>
+  <h2>Write Your Code/Text</h2>
+  <textarea id="content" rows="10" cols="60" placeholder="Write your code here..."></textarea><br><br>
+  <button onclick="uploadText()">Create Link</button>
+
+  <p id="linkArea"></p>
+
+  <script>
+    async function uploadText() {
+      const text = document.getElementById("content").value;
+
+      const response = await fetch("https://hastebin.com/documents", {
+        method: "POST",
+        body: text,
+        headers: {
+          "Content-Type": "text/plain"
+        }
+      });
+
+      const data = await response.json();
+      const link = `https://hastebin.com/raw/${data.key}`;
+
+      document.getElementById("linkArea").innerHTML = `🔗 <a href="${link}" target="_blank">${link}</a>`;
+    }
+  </script>
+</body>
+</html>
